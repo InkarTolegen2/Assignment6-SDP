@@ -13,10 +13,10 @@ import java.util.List;
  * Test tree with numbers that are easy to calculate by hand.
  * D1: truck T1, van V1, station S1. D2: drone DR1, truck T2.
  */
-final class SampleFleet {
+public final class SampleFleet {
     private SampleFleet() {}
 
-    static Fleet create() {
+    public static Fleet create() {
         Depot d1 = new Depot("D1", List.of(
                 new Truck("T1", 12_000, 1_000, 30),
                 new Van("V1", 3_000, 500, 10),
