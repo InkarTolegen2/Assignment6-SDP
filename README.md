@@ -112,3 +112,34 @@ More than 70 JUnit 5 tests. Main groups:
 ## Git history
 
 The repository was built step by step, with tests committed together with the code they test: Observer core, listeners, Visitor tree and visitors, integration, concurrency, composition root with demo, README and diagram.
+>> 
+>> ## Trade-off proof: the price of each kind of change
+>> 
+>> Two separate commits show what Visitor makes cheap and what it makes expensive.
+>> 
+>> **Commit A, "Add FuelCostVisitor (new visitor, no element class touched)".**
+>> 
+>> | File | Change |
+>> |---|---|
+>> | `visitor/FuelCostVisitor.java` | new |
+>> | `visitor/FuelCostVisitorTest.java` | new |
+>> 
+>> No existing file changed. All element classes and the `Visitor` interface stay exactly as they were. The cost of a new operation is one class and its test.
+>> 
+>> **Commit B, "Add Trailer element type".**
+>> 
+>> | File | Change |
+>> |---|---|
+>> | `model/Trailer.java` | new element |
+>> | `visitor/Visitor.java` | new method `visitTrailer` |
+>> | `visitor/MaintenanceCostVisitor.java` | new method (rate 0.10) |
+>> | `visitor/Co2Visitor.java` | new method (no emissions) |
+>> | `visitor/FuelCostVisitor.java` | new method (burns nothing) |
+>> | `visitor/ServiceDueVisitor.java` | new method |
+>> | `visitor/JsonExportVisitor.java` | new method, common vehicle fields moved to one helper |
+>> | `DoubleDispatchTest.java` | the test visitor needs the new method |
+>> | `TrailerVisitorTest.java` | new tests |
+>> 
+>> Nine files: two new and seven changed. The cost of a new element type is one new method in the interface and in every visitor, so with N visitors it touches N + 1 existing files. The compiler forces this: a visitor that misses the new method does not compile, so a forgotten case is never a silent bug.
+>> 
+>> **When I would reject Visitor.** Visitor is cheap when the tree is stable and operations keep arriving, as in this fleet: the element kinds change rarely, and new reports are often needed. If new element types appeared every week and there were many visitors, every new element would touch all of them. Then I would put the operations into the element classes (ordinary polymorphism) or use sealed types with pattern matching.
