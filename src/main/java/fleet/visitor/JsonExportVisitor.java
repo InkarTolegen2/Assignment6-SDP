@@ -12,7 +12,6 @@ import fleet.model.Vehicle;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** Hand-written compact JSON export; the nesting of the output follows the nesting of the tree. */
 public class JsonExportVisitor implements Visitor<String> {
     @Override
     public String visitFleet(Fleet fleet) {

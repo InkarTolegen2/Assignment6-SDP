@@ -11,7 +11,6 @@ import fleet.model.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Filter: returns the vehicles that drove at least the given distance since their last service. */
 public class ServiceDueVisitor implements Visitor<List<Vehicle>> {
     private final double thresholdKm;
 

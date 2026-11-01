@@ -21,13 +21,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Runs several producer threads that publish GPS and fuel events into two feeds.
- * Events are delivered synchronously inside the producer thread, so when run() returns
- * every published event has already been handled by every listener.
- */
 public class FleetSimulator {
-    /** What the producers published; equals what the listeners received. */
     public record Result(int gpsEvents, int fuelEvents, boolean stoppedEarly) {}
 
     private final Map<String, GeoPoint> depots;
@@ -49,7 +43,6 @@ public class FleetSimulator {
         this.seed = seed;
     }
 
-    /** Asks the running producers to stop after the event they are publishing right now. */
     public void requestStop() {
         stopRequested.set(true);
     }

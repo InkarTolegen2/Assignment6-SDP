@@ -13,7 +13,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DoubleDispatchTest {
-    /** Answers with the name of the visit method that was called. */
     private static final Visitor<String> WHO_IS_VISITED = new Visitor<>() {
         public String visitFleet(Fleet fleet) { return "fleet"; }
         public String visitDepot(Depot depot) { return "depot"; }

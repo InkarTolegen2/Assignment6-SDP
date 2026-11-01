@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** Four producer threads, a thousand events each, real listeners: every count must be exact. */
 class StressTest {
     @Test
     void fourThreadsTimesThousandEventsGiveExactCountsEverywhere() throws Exception {
@@ -39,7 +38,7 @@ class StressTest {
 
         assertEquals(4_000, gpsReceived.get());
         assertEquals(4, map.trackedVehicles());
-        assertEquals(40, summaries.get());   // 2 depots * 2000 events / window of 100
+        assertEquals(40, summaries.get()); 
         assertTrue(errors.isEmpty());
     }
 }

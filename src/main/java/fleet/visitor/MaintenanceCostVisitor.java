@@ -5,7 +5,6 @@ import fleet.model.FuelStation;
 import fleet.model.Truck;
 import fleet.model.Van;
 
-/** Numeric calculation: maintenance cost = kilometres since last service times a rate per vehicle kind. */
 public class MaintenanceCostVisitor extends SumVisitor {
     private static final double TRUCK_RATE = 0.30;
     private static final double VAN_RATE = 0.20;

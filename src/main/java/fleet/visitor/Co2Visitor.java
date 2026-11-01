@@ -9,10 +9,6 @@ import fleet.model.Van;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Accumulates state across the whole tree: the monthly CO2 total and the CO2 of every depot.
- * One instance is meant for one traversal; create a new one for the next report.
- */
 public class Co2Visitor extends SumVisitor {
     private static final double DIESEL_KG_PER_LITER = 2.68;
     private static final double GRID_KG_PER_KWH = 0.5;

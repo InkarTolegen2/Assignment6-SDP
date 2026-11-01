@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** Whole chain: fuel sensor -> fuel monitor -> alert -> visitors on the depot -> report event -> log. */
 class PipelineTest {
     private final EventPublisher<FleetEvent> fuelFeed = new EventPublisher<>(error -> { });
     private final EventPublisher<FleetEvent> alerts = new EventPublisher<>(error -> { });

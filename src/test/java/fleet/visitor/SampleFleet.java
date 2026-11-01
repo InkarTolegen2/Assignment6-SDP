@@ -9,10 +9,6 @@ import fleet.model.Van;
 
 import java.util.List;
 
-/**
- * Test tree with numbers that are easy to calculate by hand.
- * D1: truck T1, van V1, station S1. D2: drone DR1, truck T2.
- */
 public final class SampleFleet {
     private SampleFleet() {}
 

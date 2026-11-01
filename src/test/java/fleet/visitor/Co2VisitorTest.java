@@ -12,7 +12,6 @@ class Co2VisitorTest {
 
     @Test
     void returnsMonthlyCo2OfTheWholeFleet() {
-        // T1 300 L, V1 50 L, T2 200 L diesel = 550 L * 2.68 = 1474; drone 10 kWh * 0.5 = 5
         assertEquals(1_479.0, fleet.accept(new Co2Visitor()), 1e-6);
     }
 

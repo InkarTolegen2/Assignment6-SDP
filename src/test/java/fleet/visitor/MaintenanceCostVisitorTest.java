@@ -14,13 +14,11 @@ class MaintenanceCostVisitorTest {
 
     @Test
     void depotOneCostsTruckPlusVan() {
-        // 12000 * 0.30 + 3000 * 0.20 + station 0 = 3600 + 600
         assertEquals(4_200.0, fleet.depots().get(0).accept(new MaintenanceCostVisitor()), 1e-6);
     }
 
     @Test
     void depotTwoCostsDronePlusTruck() {
-        // 500 * 0.05 + 9000 * 0.30 = 25 + 2700
         assertEquals(2_725.0, fleet.depots().get(1).accept(new MaintenanceCostVisitor()), 1e-6);
     }
 

@@ -9,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** The real wiring of the composition root, driven by the real simulator. */
 class FleetSystemTest {
     private final List<Throwable> errors = new CopyOnWriteArrayList<>();
     private final FleetSystem system = FleetSystem.assemble(errors::add);
@@ -21,7 +20,7 @@ class FleetSystemTest {
         assertEquals(4_000, system.gpsCount().count());
         assertEquals(4_000, system.fuelCount().count());
         assertEquals(4, system.map().trackedVehicles());
-        assertEquals(400, system.summaries().count());   // 2 depots * 2000 events / window of 10
+        assertEquals(400, system.summaries().count());
         assertTrue(errors.isEmpty());
     }
 

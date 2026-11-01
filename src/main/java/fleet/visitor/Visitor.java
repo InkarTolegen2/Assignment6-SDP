@@ -7,10 +7,6 @@ import fleet.model.FuelStation;
 import fleet.model.Truck;
 import fleet.model.Van;
 
-/**
- * Double dispatch: element.accept(visitor) picks the element type, the call
- * visitor.visitXxx(this) then picks the operation. Visitors do the traversal.
- */
 public interface Visitor<R> {
     R visitFleet(Fleet fleet);
 
