@@ -3,6 +3,7 @@ package fleet.visitor;
 import fleet.model.Depot;
 import fleet.model.Drone;
 import fleet.model.FuelStation;
+import fleet.model.Trailer;
 import fleet.model.Truck;
 import fleet.model.Van;
 
@@ -36,6 +37,11 @@ public class Co2Visitor extends SumVisitor {
     @Override
     public Double visitDrone(Drone drone) {
         return add(drone.kmThisMonth() * drone.kwhPer100Km() / 100 * GRID_KG_PER_KWH);
+    }
+
+    @Override
+    public Double visitTrailer(Trailer trailer) {
+        return 0.0; 
     }
 
     @Override

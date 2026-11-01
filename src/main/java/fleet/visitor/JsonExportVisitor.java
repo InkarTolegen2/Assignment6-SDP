@@ -5,6 +5,7 @@ import fleet.model.Drone;
 import fleet.model.Fleet;
 import fleet.model.FleetElement;
 import fleet.model.FuelStation;
+import fleet.model.Trailer;
 import fleet.model.Truck;
 import fleet.model.Van;
 import fleet.model.Vehicle;
@@ -27,17 +28,22 @@ public class JsonExportVisitor implements Visitor<String> {
 
     @Override
     public String visitTruck(Truck truck) {
-        return vehicle("truck", truck, "litersPer100Km", truck.litersPer100Km());
+        return vehicleStart("truck", truck) + ",\"litersPer100Km\":" + truck.litersPer100Km() + "}";
     }
 
     @Override
     public String visitVan(Van van) {
-        return vehicle("van", van, "litersPer100Km", van.litersPer100Km());
+        return vehicleStart("van", van) + ",\"litersPer100Km\":" + van.litersPer100Km() + "}";
     }
 
     @Override
     public String visitDrone(Drone drone) {
-        return vehicle("drone", drone, "kwhPer100Km", drone.kwhPer100Km());
+        return vehicleStart("drone", drone) + ",\"kwhPer100Km\":" + drone.kwhPer100Km() + "}";
+    }
+
+    @Override
+    public String visitTrailer(Trailer trailer) {
+        return vehicleStart("trailer", trailer) + "}";
     }
 
     @Override
@@ -47,11 +53,10 @@ public class JsonExportVisitor implements Visitor<String> {
                 + ",\"pricePerLiter\":" + station.pricePerLiter() + "}";
     }
 
-    private String vehicle(String type, Vehicle vehicle, String consumptionName, double consumption) {
+    private String vehicleStart(String type, Vehicle vehicle) {
         return "{\"type\":\"" + type + "\",\"id\":" + quote(vehicle.id())
                 + ",\"kmSinceService\":" + vehicle.kmSinceService()
-                + ",\"kmThisMonth\":" + vehicle.kmThisMonth()
-                + ",\"" + consumptionName + "\":" + consumption + "}";
+                + ",\"kmThisMonth\":" + vehicle.kmThisMonth();
     }
 
     private String join(List<? extends FleetElement> elements) {

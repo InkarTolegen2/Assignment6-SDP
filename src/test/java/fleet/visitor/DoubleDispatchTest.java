@@ -4,6 +4,7 @@ import fleet.model.Depot;
 import fleet.model.Drone;
 import fleet.model.Fleet;
 import fleet.model.FuelStation;
+import fleet.model.Trailer;
 import fleet.model.Truck;
 import fleet.model.Van;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ class DoubleDispatchTest {
         public String visitTruck(Truck truck) { return "truck"; }
         public String visitVan(Van van) { return "van"; }
         public String visitDrone(Drone drone) { return "drone"; }
+        public String visitTrailer(Trailer trailer) { return "trailer"; }
         public String visitFuelStation(FuelStation station) { return "station"; }
     };
 
@@ -27,6 +29,7 @@ class DoubleDispatchTest {
         assertEquals("truck", new Truck("T", 0, 0, 0).accept(WHO_IS_VISITED));
         assertEquals("van", new Van("V", 0, 0, 0).accept(WHO_IS_VISITED));
         assertEquals("drone", new Drone("D", 0, 0, 0).accept(WHO_IS_VISITED));
+        assertEquals("trailer", new Trailer("TR", 0, 0).accept(WHO_IS_VISITED));
         assertEquals("station", new FuelStation("S", 0, 0).accept(WHO_IS_VISITED));
     }
 

@@ -4,6 +4,7 @@ import fleet.model.Depot;
 import fleet.model.Drone;
 import fleet.model.Fleet;
 import fleet.model.FuelStation;
+import fleet.model.Trailer;
 import fleet.model.Truck;
 import fleet.model.Van;
 import fleet.model.Vehicle;
@@ -45,6 +46,11 @@ public class ServiceDueVisitor implements Visitor<List<Vehicle>> {
     @Override
     public List<Vehicle> visitDrone(Drone drone) {
         return dueOrNothing(drone);
+    }
+
+    @Override
+    public List<Vehicle> visitTrailer(Trailer trailer) {
+        return dueOrNothing(trailer);
     }
 
     @Override
